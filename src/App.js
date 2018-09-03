@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import axios from 'axios';
+
 import {input,inputCleaner} from './actions/inputUpdateAction';
 import {loadTasks,addTask} from './actions/tasksAction';
 
 import './App.css';
-import ToDoList from './Components/ToDoList/ToDoList'
+import ToDoList from './Components/ToDoList/ToDoList';
+import Config from './config/config';
 
 class App extends Component {
 
-
     componentDidMount(){
-        axios.get('http://localhost:3001/tasks').then(({data,status})=>{if(status === 200){this.props.loadTasksFunc(data)}});
+        // console.log('location: ', window.location);
+        axios.get(`http://${window.location.hostname}:${Config.server_port}/tasks`).then(({data,status})=>{if(status === 200){this.props.loadTasksFunc(data)}});
     }
 
     addInput = (event) => {
         event.preventDefault();
         let newInput = this.props.input;
-        axios.post('http://localhost:3001/tasks',{task: newInput})
+        axios.post(`http://${window.location.hostname}:${Config.server_port}/tasks`,{task: newInput})
             .then(({data, status}) => {
                 if (status === 201) {
                     this.props.addInputFunc(data);
@@ -70,4 +72,3 @@ function mapDispatchToProps (dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);
-

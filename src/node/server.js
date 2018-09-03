@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 mongoose.Promise = global.Promise;
 const todoRoutes = require('./routes/todoRoutes');
-const config = require('./config/config');
+const config = require('../config/config');
 const DB = config.db_url;
 const server_port = config.server_port;
 

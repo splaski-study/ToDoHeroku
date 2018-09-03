@@ -16,7 +16,7 @@
     "redux": "^4.0.0"
   },
   "scripts": {
-    "server": "nodemon server.js",
+    "server": "nodemon /src/node/server.js",
     "start": "react-scripts start",
     "dev": "npm run server & npm start",
     "build": "react-scripts build",
