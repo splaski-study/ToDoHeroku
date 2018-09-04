@@ -13,8 +13,8 @@ class App extends Component {
 
     componentDidMount(){
         // axios.get('/tasks').then(({data,status})=>{if(status === 200){this.props.loadTasksFunc(data)}});
-        console.log(`http://${config.serverConfig.host}:${config.serverConfig.port}/tasks`);
-        axios.get(`http://${config.serverConfig.host}:${config.serverConfig.port}/tasks`)
+        console.log(`${config.serverConfig.host}:${config.serverConfig.port}/tasks`);
+        axios.get(`${config.serverConfig.host}:${config.serverConfig.port}/tasks`)
             .then(({data,status})=>{if(status === 200){this.props.loadTasksFunc(data)}})
             .catch(err => console.log(err));
     }
