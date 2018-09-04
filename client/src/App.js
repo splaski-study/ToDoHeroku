@@ -23,8 +23,7 @@ class App extends Component {
         event.preventDefault();
         let newInput = this.props.input;
         // axios.post('/tasks', {task: newInput})
-        console.log(`http://${config.serverConfig.host}/tasks`);
-        axios.post(`http://${config.serverConfig.host}/tasks`,{task: newInput})
+        axios.post('/tasks',{task: newInput})
             .then(({data, status}) => {
                 if (status === 201) {
                     this.props.addInputFunc(data);
