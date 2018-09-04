@@ -13,19 +13,24 @@ class App extends Component {
 
     componentDidMount(){
         // axios.get('/tasks').then(({data,status})=>{if(status === 200){this.props.loadTasksFunc(data)}});
-        axios.get(`http://${config.serverConfig.host}:${config.serverConfig.port}/tasks`).then(({data,status})=>{if(status === 200){this.props.loadTasksFunc(data)}});
+        console.log(`http://${config.serverConfig.host}:${config.serverConfig.port}/tasks`);
+        axios.get(`http://${config.serverConfig.host}:${config.serverConfig.port}/tasks`)
+            .then(({data,status})=>{if(status === 200){this.props.loadTasksFunc(data)}})
+            .catch(err => console.log(err));
     }
 
     addInput = (event) => {
         event.preventDefault();
         let newInput = this.props.input;
         // axios.post('/tasks', {task: newInput})
+        // console.log(`http://${config.serverConfig.host}:${config.serverConfig.port}/tasks`);
         axios.post(`http://${config.serverConfig.host}:${config.serverConfig.port}/tasks`,{task: newInput})
             .then(({data, status}) => {
                 if (status === 201) {
                     this.props.addInputFunc(data);
                 }
-            });
+            })
+            .catch(err => console.log(err));
     };
 
     inputHandler =(event)=>{
