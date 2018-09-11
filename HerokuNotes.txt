@@ -1,0 +1,9 @@
+Note that this is not a pure client-server app - because Heroku only allows for one dyno to be used per free account. 
+Because of that, the server is running on the dyno (see the start script), and the client is presented by addresing 
+the appropriate route on the server. The server is accessing the client code as static content from the build: 
+Line 17: 
+app.use(express.static(path.join(__dirname,'client/build')));
+This fires up index.html on the client side.
+The client and server are running on different ports; it is hard to see when you are in the Heroku environment, 
+everything is encapsulated within a sigle dyno. On the background, however, the client is sending requests and handles 
+responses from the server in a pure client-server manner.
